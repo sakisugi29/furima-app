@@ -34,6 +34,8 @@ php artisan storage:link
 
 ## ER図
 
+<img width="829" height="942" alt="フリマアプリER図 drawio" src="https://github.com/user-attachments/assets/f44cf22c-a08d-4e6f-afdf-ae5632d34fef" />
+
 
 
 ## URL
