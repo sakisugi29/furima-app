@@ -5,7 +5,7 @@
 ### Dockerビルド
 
 ```bash
-git clone <リポジトリURL>
+git clone https://github.com/sakisugi29/furima-app.git
 cd furima-app
 docker compose up -d --build
 ```
@@ -34,7 +34,7 @@ php artisan storage:link
 
 ## ER図
 
-<ER図の画像>
+
 
 ## URL
 
