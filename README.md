@@ -31,6 +31,14 @@ php artisan storage:link
 - Laravel 8.x
 - MySQL 8.0.26
 - nginx 1.21.1
+- MailHog（メール認証）
+
+##メール認証について
+
+* 会員登録後、メール認証が必要です
+* 認証メールはMailHogで確認できます
+* MailHog画面：http://localhost:8025
+
 
 ## ER図
 
@@ -43,3 +51,4 @@ php artisan storage:link
 - 開発環境：http://localhost
 - ユーザー登録：http://localhost/register
 - phpMyAdmin：http://localhost:8080
+- MailHog：http://localhost:8025
