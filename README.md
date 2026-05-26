@@ -33,7 +33,7 @@ php artisan storage:link
 - nginx 1.21.1
 - MailHog（メール認証）
 
-##メール認証について
+## メール認証について
 
 * 会員登録後、メール認証が必要です
 * 認証メールはMailHogで確認できます
