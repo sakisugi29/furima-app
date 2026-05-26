@@ -39,6 +39,10 @@ php artisan storage:link
 * 認証メールはMailHogで確認できます
 * MailHog画面：http://localhost:8025
 
+## Stripe決済について
+* カード払い選択時はStripeの決済画面に遷移します
+* テスト用カード番号：4242 4242 4242 4242
+
 
 ## ER図
 
