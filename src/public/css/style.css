@@ -1,0 +1,145 @@
+.header{
+    width: 100%;
+    height: 80px;
+    padding: 15px 30px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    width:370px;
+    height: 36px;
+    color:#FFFFFF;
+}
+
+.header_nav{
+    width:100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 11px;
+
+}
+
+.search-form {
+    width: 563px;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 500px;
+    height: 50px;
+    padding: 8px 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 24px;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input::placeholder {
+    color: #000000 !important;
+    opacity: 1 !important;
+    font-size: 24px;
+}
+
+
+
+.nav-menu{
+    width: 463px;
+    display:flex;
+    gap: 20px;
+}
+
+.logout-button,
+.login-button {
+    width: 135px;
+    height: 47px;
+    color: #FFFFFF;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+
+.mypage-link{
+    width: 135px;
+    height: 47px;
+    color: #FFFFFF;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.sell-button{
+    width: 100px;
+    height: 49px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000000;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+@media screen and (max-width: 1540px) {
+    .header {
+        padding: 15px 20px !important;
+    }
+}
+
+@media screen and (max-width:850px) {
+    .header{
+        padding: 10px 15px !important;
+    }
+
+    .logo{
+        width: 30% !important;
+        height: auto !important;
+    }
+
+    .search-form{
+        width:50% !important;
+    }
+
+    .search-input{
+        width: 100% !important;
+        height: auto !important;
+        font-size: 16px !important;
+        padding: 8px 15px !important;
+    }
+
+    .search-input::placeholder {
+        font-size: 16px !important;
+    }
+
+    .nav-menu {
+        width: auto !important;
+        gap: 8px !important;
+    }
+
+    .logout-button,
+    .login-button,
+    .mypage-link,
+    .sell-button {
+        width: auto !important;
+        font-size: 14px !important;
+        padding: 0 8px !important;
+    }
+}
