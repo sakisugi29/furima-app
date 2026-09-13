@@ -178,7 +178,8 @@ STRIPE_SECRET=sk_test_xxxxxxxx
 | updated_at | timestamp |  |  |  |  |
 
 ## ER図
-![ER図](docs/ER.png)
+[furima_app_ER図.pdf](https://github.com/user-attachments/files/32159414/furima_app_ER.pdf)
+
 
 ## テストアカウント
 name: テストユーザー1
