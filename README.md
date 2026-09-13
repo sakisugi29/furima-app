@@ -178,7 +178,8 @@ STRIPE_SECRET=sk_test_xxxxxxxx
 | updated_at | timestamp |  |  |  |  |
 
 ## ER図
-[furima_app_ER図.pdf](https://github.com/user-attachments/files/32159414/furima_app_ER.pdf)
+<img width="2148" height="2954" alt="フリマアプリER図" src="https://github.com/user-attachments/assets/ef6c4bfa-1771-4804-ba45-2c9242d1b7a3" />
+
 
 
 ## テストアカウント
