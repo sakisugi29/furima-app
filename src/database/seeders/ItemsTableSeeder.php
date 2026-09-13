@@ -17,7 +17,7 @@ class ItemsTableSeeder extends Seeder
     public function run()
     {
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => '腕時計',
             'description' => 'スタイリッシュなデザインのメンズ腕時計',
             'brand_name' => 'Rolax',
@@ -32,7 +32,7 @@ class ItemsTableSeeder extends Seeder
         ]);
 
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => 'HDD',
             'description' => '高速で信頼性の高いハードディスク',
             'brand_name' => '西芝',
@@ -44,10 +44,10 @@ class ItemsTableSeeder extends Seeder
         $item->categories()->attach(Category::where('name', '家電')->first()->id);
 
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => '玉ねぎ3束',
             'description' => '新鮮な玉ねぎの3束セット',
-            'brand_name' => '',
+            'brand_name' => 'なし',
             'price' => 300,
             'item_image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
             'condition' => 'やや傷や汚れあり',
@@ -56,7 +56,7 @@ class ItemsTableSeeder extends Seeder
         $item->categories()->attach(Category::where('name', 'キッチン')->first()->id);
 
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => '革靴',
             'description' => 'クラシックなデザインの革靴',
             'brand_name' => '',
@@ -71,7 +71,7 @@ class ItemsTableSeeder extends Seeder
         ]);
 
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => 'ノートPC',
             'description' => '高性能なノートパソコン',
             'brand_name' => '',
@@ -83,7 +83,7 @@ class ItemsTableSeeder extends Seeder
         $item->categories()->attach(Category::where('name', '家電')->first()->id);
 
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => 'マイク',
             'description' => '高音質のレコーディング用マイク',
             'brand_name' => 'なし',
@@ -95,7 +95,7 @@ class ItemsTableSeeder extends Seeder
         $item->categories()->attach(Category::where('name', '家電')->first()->id);
 
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => 'ショルダーバッグ',
             'description' => 'おしゃれなショルダーバッグ',
             'brand_name' => '',
@@ -110,7 +110,7 @@ class ItemsTableSeeder extends Seeder
         ]);
 
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => 'タンブラー',
             'description' => '使いやすいタンブラー',
             'brand_name' => 'なし',
@@ -122,7 +122,7 @@ class ItemsTableSeeder extends Seeder
         $item->categories()->attach(Category::where('name', 'キッチン')->first()->id);
 
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => 'コーヒーミル',
             'description' => '手動のコーヒーミル',
             'brand_name' => 'Starbacks',
@@ -135,7 +135,7 @@ class ItemsTableSeeder extends Seeder
 
 
         $item = Item::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'item_name' => 'メイクセット',
             'description' => '便利なメイクアップセット',
             'brand_name' => '',

@@ -18,6 +18,17 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/register', function () {
+    return view('auth.register');
+});
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
+
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
@@ -32,20 +43,10 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', '認証メールを再送信しました');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect('/login');
-})->name('logout');
 Route::get('/', function () {
     return view('items.index');
 });
-Route::middleware(['auth','verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/mypage', [ProfileController::class, 'show']);
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
     Route::post('/mypage/profile', [ProfileController::class, 'update']);

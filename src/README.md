@@ -1,64 +1,206 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# furima-app
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## プロジェクト概要
+フリマアプリのクローンアプリケーションです。商品の出品・購入・いいね・コメント機能などを実装しています。
 
-## About Laravel
+## 使用技術（実行環境）
+- PHP 8.x
+- Laravel 8.x
+- MySQL 8.0.26
+- nginx 1.21.1
+- MailHog（メール認証）
+- Stripe（決済）
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 環境構築
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Dockerビルド
+```bash
+git clone https://github.com/sakisugi29/furima-app.git
+cd furima-app
+docker compose up -d --build
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Laravel環境構築
+```bash
+docker compose exec php bash
+composer install
+cp .env.example .env
+```
 
-## Learning Laravel
+`.env`を開き、下記の「.env設定」を参考に環境変数を設定してください。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+php artisan storage:link
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## .env設定
 
-## Laravel Sponsors
+### DB接続
+Docker Compose経由でmysqlコンテナに接続します。`.env.example`に記載の値のまま利用できます。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_user
+```
 
-### Premium Partners
+### メール認証について
+MailHogを使用しています。`MAIL_FROM_ADDRESS`は`null`のままだとメール送信エラーになるため、必ず何らかのメールアドレスを設定してください。
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```dotenv
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=example@example.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
 
-## Contributing
+設定後、会員登録をすると認証メールが送信されます。以下のURLからMailHogの管理画面を開き、メール本文内のリンクから認証を完了してください。
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- MailHog管理画面：http://localhost:8025
 
-## Code of Conduct
+### Stripeについて
+支払い方法で「カード払い」を選択した場合のみ、Stripeの決済画面に遷移します。以下を設定してください。
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```dotenv
+STRIPE_KEY=pk_test_xxxxxxxx
+STRIPE_SECRET=sk_test_xxxxxxxx
+```
 
-## Security Vulnerabilities
+テスト用カード番号：4242 4242 4242 4242（有効期限・セキュリティコードは任意の未来日付・3桁で入力可能）
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+参考：[Stripe公式ドキュメント](https://docs.stripe.com/payments/checkout?locale=ja-JP)
 
-## License
+## テーブル仕様
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### usersテーブル
+| カラム名 | 型 | primary key | unique key | not null | foreign key |
+| --- | --- | --- | --- | --- | --- |
+| id | bigint | ◯ |  | ◯ |  |
+| name | varchar(255) |  |  | ◯ |  |
+| email | varchar(255) |  | ◯ | ◯ |  |
+| email_verified_at | timestamp |  |  |  |  |
+| password | varchar(255) |  |  | ◯ |  |
+| remember_token | varchar(100) |  |  |  |  |
+| created_at | timestamp |  |  |  |  |
+| updated_at | timestamp |  |  |  |  |
+
+### itemsテーブル
+| カラム名 | 型 | primary key | unique key | not null | foreign key |
+| --- | --- | --- | --- | --- | --- |
+| id | bigint | ◯ |  | ◯ |  |
+| user_id | bigint |  |  | ◯ | users(id) |
+| item_image | varchar(255) |  |  | ◯ |  |
+| item_name | varchar(255) |  |  | ◯ |  |
+| brand_name | varchar(255) |  |  |  |  |
+| price | int |  |  | ◯ |  |
+| description | varchar(255) |  |  | ◯ |  |
+| condition | varchar(255) |  |  | ◯ |  |
+| status | varchar(255) |  |  | ◯ |  |
+| created_at | timestamp |  |  |  |  |
+| updated_at | timestamp |  |  |  |  |
+
+### categoriesテーブル
+| カラム名 | 型 | primary key | unique key | not null | foreign key |
+| --- | --- | --- | --- | --- | --- |
+| id | bigint | ◯ |  | ◯ |  |
+| name | varchar(255) |  |  | ◯ |  |
+| created_at | timestamp |  |  |  |  |
+| updated_at | timestamp |  |  |  |  |
+
+### item_categoriesテーブル
+| カラム名 | 型 | primary key | unique key | not null | foreign key |
+| --- | --- | --- | --- | --- | --- |
+| id | bigint | ◯ |  | ◯ |  |
+| item_id | bigint |  |  | ◯ | items(id) |
+| category_id | bigint |  |  | ◯ | categories(id) |
+
+### likesテーブル
+| カラム名 | 型 | primary key | unique key | not null | foreign key |
+| --- | --- | --- | --- | --- | --- |
+| id | bigint | ◯ |  | ◯ |  |
+| item_id | bigint |  |  | ◯ | items(id) |
+| user_id | bigint |  |  | ◯ | users(id) |
+| created_at | timestamp |  |  |  |  |
+| updated_at | timestamp |  |  |  |  |
+
+### commentsテーブル
+| カラム名 | 型 | primary key | unique key | not null | foreign key |
+| --- | --- | --- | --- | --- | --- |
+| id | bigint | ◯ |  | ◯ |  |
+| item_id | bigint |  |  | ◯ | items(id) |
+| user_id | bigint |  |  | ◯ | users(id) |
+| body | varchar(255) |  |  | ◯ |  |
+| created_at | timestamp |  |  |  |  |
+| updated_at | timestamp |  |  |  |  |
+
+### purchasesテーブル
+| カラム名 | 型 | primary key | unique key | not null | foreign key |
+| --- | --- | --- | --- | --- | --- |
+| id | bigint | ◯ |  | ◯ |  |
+| item_id | bigint |  |  | ◯ | items(id) |
+| user_id | bigint |  |  | ◯ | users(id) |
+| payment_method | varchar(255) |  |  | ◯ |  |
+| shipping_address | varchar(255) |  |  | ◯ |  |
+| created_at | timestamp |  |  |  |  |
+| updated_at | timestamp |  |  |  |  |
+
+### addressesテーブル
+| カラム名 | 型 | primary key | unique key | not null | foreign key |
+| --- | --- | --- | --- | --- | --- |
+| id | bigint | ◯ |  | ◯ |  |
+| user_id | bigint |  |  | ◯ | users(id) |
+| address | varchar(255) |  |  | ◯ |  |
+| postal_code | varchar(255) |  |  | ◯ |  |
+| building | varchar(255) |  |  |  |  |
+| created_at | timestamp |  |  |  |  |
+| updated_at | timestamp |  |  |  |  |
+
+### profilesテーブル
+| カラム名 | 型 | primary key | unique key | not null | foreign key |
+| --- | --- | --- | --- | --- | --- |
+| id | bigint | ◯ |  | ◯ |  |
+| user_id | bigint |  |  | ◯ | users(id) |
+| profile_image | varchar(255) |  |  |  |  |
+| postal_code | varchar(255) |  |  | ◯ |  |
+| address | varchar(255) |  |  | ◯ |  |
+| building | varchar(255) |  |  |  |  |
+| created_at | timestamp |  |  |  |  |
+| updated_at | timestamp |  |  |  |  |
+
+## ER図
+![ER図](docs/ER.png)
+
+## テストアカウント
+name: テストユーザー1
+email: test1@example.com
+password: password
+
+-------------------------
+
+name: テストユーザー2
+email: test2@example.com
+password: password
+
+## PHPUnitを利用したテストに関して
+```bash
+docker compose exec php bash
+php artisan migrate:fresh --env=testing
+php artisan test
+```
+※`.env.testing`にもDB接続情報とStripeのAPIキーを設定してください。
+
+## URL
+- 開発環境：http://localhost
+- ユーザー登録：http://localhost/register
+- phpMyAdmin：http://localhost:8080
+- MailHog：http://localhost:8025

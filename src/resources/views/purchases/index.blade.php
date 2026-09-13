@@ -49,8 +49,14 @@
         <a href="/purchase/address/{{ $item->id }}" class="address-link">変更する</a>
         </div>
         <div class="current-address">
-            <p class="current-address-text">
-                {{ Auth::user()->addresses()->first()->address ?? '住所が登録されていません' }}</p>
+            @if ($address)
+                <p class="current-address-text">
+                    〒{{ $address->postal_code }}<br>
+                    {{ $address->address }}
+                </p>
+            @else
+                <p class="current-address-text">住所が登録されていません</p>
+            @endif
         </div>
     </div>
     </div>

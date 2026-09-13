@@ -19,7 +19,8 @@ class PurchaseController extends Controller
         if ($item->status !== '販売中') {
         return redirect('/');
     }
-        $address=Auth::user()->addresses()->first();
+        $address=Auth::user()->addresses()->first() ?? Auth::user()->profile()->first();
+
         return view('purchases.index', compact('item', 'item_id', 'address'));
     }
 

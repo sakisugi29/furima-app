@@ -35,12 +35,30 @@
         <div class="form-section">
             <label class="section-label">商品画像</label>
             <div class="image-upload-area">
-                <label for="item_image" class="image-upload-label">
+                <img id="item-image-preview" class="item-image-preview" style="display:none;">
+                <label for="item_image" class="image-upload-label" id="image-upload-label">
                     <span>画像を選択する</span>
                 </label>
                 <input type="file" id="item_image" name="item_image" class="image-input" accept="image/*">
             </div>
         </div>
+
+        <script>
+        document.getElementById('item_image').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const preview = document.getElementById('item-image-preview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                document.getElementById('image-upload-label').style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        });
+        </script>
+
         <div class="form-section">
             <label class="section-label detail-label">商品の詳細</label>
 

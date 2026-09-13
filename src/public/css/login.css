@@ -89,4 +89,23 @@
     text-decoration: none;
 }
 
+@media screen and (max-width:1540px){
+    .login-container{
+        width: 60%;
+        height: 100%;
+        padding: 20px;
+    }
+}
 
+@media screen and (max-width:850px){
+    .login-container{
+        width: 60%;
+        height: 100%;
+        padding: 20px;
+    }
+
+    .form-group-button{
+    width: 100%;
+    margin-bottom: 30px;
+    }
+}

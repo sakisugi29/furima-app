@@ -19,14 +19,14 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        $profile=Profile::firstOrNew(['user_id' => auth()->id()]);
-        $user=auth()->user();
+        $profile = Profile::firstOrNew(['user_id' => auth()->id()]);
+        $user = auth()->user();
         return view('profiles.edit', compact('profile','user'));
     }
 
-    public function update(profileRequest $request)
+    public function update(ProfileRequest $request)
     {
-        $profile = Profile::where('user_id', auth()->id())->firstOrFail();
+        $profile = Profile::where('user_id', auth()->id())->firstOrCreate();
         $user = auth()->user();
 
         $user->update(['name' => $request->name]);

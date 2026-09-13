@@ -351,40 +351,103 @@
     margin-top: 50px;
 }
 
-@media screen and (max-width: 1540px) {
-    .container {
-        width: 90% ;
-        max-width: 1380px;
-        margin: 0 auto;
+@media screen and (max-width:1540px){
+    .container{
+        width: 80%;
+        height: 100%;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width:850px){
+    .container{
+        width: 90%;
+        gap: 20px;
     }
 
-
-
-    .product-info {
-        width: 100% ;
-        height: auto ;
+    .item-image{
+        width: 40%;
+        height: 40%;
+        margin-top: 0;
     }
 
-    .name-area {
-        width: 100% ;
+    .item-detail{
+        width: 60%;
     }
 
-    .price-area {
-        width: 100% ;
+    .item-name {
+        font-size: 24px;
+    }
+
+    .item_price {
+        font-size: 28px;
     }
 
     .icons-area {
-        width: 100% ;
-        gap: 60px ;
+        margin: 10px 0;
     }
 
-    .item-description {
-        width: 100% ;
-        height: auto ;
+    .product-info,
+    .price-area,
+    .purchase-form,
+    .item-description,
+    .description-title,
+    .description-area,
+    .item-data,
+    .comment-title,
+    .comment-item,
+    .comment-label {
+        width: 100%;
+        height: auto;
     }
 
-    .item-data {
-        width: 100% ;
-        height: auto ;
+    .description-title{
+        font-size: 20px;
+    }
+
+    .description-area{
+        font-size: 18px;
+    }
+
+    .description-title,
+    .data-title{
+        font-size: 24px;
+    }
+
+    .item-data-label{
+        font-size: 20px;
+    }
+
+    .category-tag {
+        font-size: 14px;
+    }
+
+    .condition-value{
+        font-size: 20px;
+    }
+
+    .purchase-button {
+        width: 90%;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .comment-label{
+        font-size: 20px;
+    }
+
+    .comment-title{
+        font-size: 24px;
+    }
+
+    .comment-text-area{
+        width: 70%;
+        height: 200px;
+    }
+
+    .comment-button{
+        width: 70%;
+        height: 50px;
+        font-size: 20px;
     }
 }

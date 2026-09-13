@@ -18,6 +18,7 @@ class CategoriesTableSeeder extends Seeder
         $categories=[
             'ファッション',
             '家電',
+            'インテリア',
             'スマホ',
             'レディース',
             'メンズ',
