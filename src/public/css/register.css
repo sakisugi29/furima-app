@@ -58,18 +58,20 @@
 }
 
 .form-group-button{
-    width: 680px;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
 
 }
 
 .register-form-button{
-    width: 100%;
+    width: 680px;
     height: 65px;
     background-color: #FF5555;
+    color: #FFFFFF;
     font-size: 26px;
     font-weight: bold;
-    color: #FFFFFF;
     border: none;
     border-radius: 5px;
     cursor: pointer;
